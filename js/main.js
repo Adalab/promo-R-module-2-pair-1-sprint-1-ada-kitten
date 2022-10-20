@@ -1,9 +1,5 @@
 'use strict';
 
-//eliminar la clase del formulario
-const formAddCat = document.querySelector('.js-new-form');
-
-//formAddCat.classList.remove('collapsed');
 
 //crear la lista de gatitos en JS
 
@@ -41,7 +37,9 @@ const kittenThree = `<li class="card"><img class="card_img"  src=${kittenImage3}
 //búsqueda por descripción
 
 const input_search_desc = document.querySelector('.js_in_search_desc');
+
 input_search_desc.value = 'cariñoso';
+
 const descrSearchText = input_search_desc.value;
 
 if( kittenDesc1.includes(descrSearchText) ) {
@@ -49,9 +47,21 @@ if( kittenDesc1.includes(descrSearchText) ) {
     }
     
     if( kittenDesc2.includes(descrSearchText) ) {
-    //Completa el código
+        listKitten.innerHTML = kittenTwo;
     }
     
     if( kittenDesc3.includes(descrSearchText) ) {
         listKitten.innerHTML = kittenThree;
     }
+
+//Mostrar/ocultar el formulario
+
+
+const formAddCat = document.querySelector('.js-new-form');
+
+if (formAddCat.classList.contains("collapsed")){formAddCat.classList.remove("collapsed")}
+else {formAddCat.classList.add("collapsed")};
+
+
+
+
