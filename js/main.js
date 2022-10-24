@@ -49,10 +49,26 @@ const kittenThree = `<li class="card"><img class="card_img"  src=${kittenImage3}
 listKitten.innerHTML = kittenOne + kittenTwo + kittenThree;
 
 
-//búsqueda por descripción
 
+//validar formulario de búsqueda. Variables:
 const input_search_desc = document.querySelector('.js_in_search_desc');
+const input_search_race = document.querySelector('.js_in_search_race');
+const searchBtn = document.querySelector('.js-btn-search');
+const labelSearch = document.querySelector('.error_search');
+const ValueSearchDesc = input_search_desc.value;
+const ValueSearchRace = input_search_race.value;
 
+
+//evento de validar, boton de busqueda:
+searchBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+  if ( ValueSearchDesc === "" || ValueSearchRace=== "") {
+    labelSearch.innerHTML = 'Debe rellenar todos los valores.'
+  }
+});
+
+
+//búsqueda por descripción
 /*input_search_desc.value = '';
 
 const descrSearchText = input_search_desc.value;
@@ -68,6 +84,8 @@ if( kittenDesc1.includes(descrSearchText) ) {
     if( kittenDesc3.includes(descrSearchText) ) {
         listKitten.innerHTML = kittenThree;
     }*/
+
+
 
 //Mostrar/ocultar el formulario
 
@@ -92,6 +110,20 @@ const valuePhoto = inputPhoto.value;
 const valueName = inputName.value;
 //mensaje de error
 const labelMesageError = document.querySelector('.js-label-error');
+
 //evento de click en añadir
 btnAdd.addEventListener('click', () => {
-    if ( valueDesc === "" )
+    if ( valueDesc === "" || valuePhoto=== "" || valueName==="" ) {
+        labelMesageError.innerHTML = 'Debe rellenar todos los valores.'
+    }
+  });
+
+  //Cancelar formulario
+
+  const btonCancel = document.querySelector( ".js-btn-cancel");
+
+  //Escuchar el boton (falta limpiar el form)
+
+  btonCancel.addEventListener('click', () => {
+    formAddCat.classList.add("collapsed");
+  });
