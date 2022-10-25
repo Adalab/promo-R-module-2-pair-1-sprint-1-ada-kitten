@@ -87,18 +87,11 @@ if( kittenDesc1.includes(descrSearchText) ) {
 
 
 
-//Mostrar/ocultar el formulario
+//Constantes para mostrar/ocultar el formulario
 
 const formAddCat = document.querySelector('.js-new-form');
 const btn = document.querySelector(".js-cross");
-/*
-btn.addEventListener('click', () => {
-    if (formAddCat.classList.contains("collapsed"))
-    {formAddCat.classList.remove("collapsed")
-    }
-    else {formAddCat.classList.add("collapsed")};
-});
-*/
+
 //validar la información del formulario
 const btnAdd = document.querySelector(".js-btn-add");
 //const de los input
@@ -138,7 +131,7 @@ btnAdd.addEventListener('click', () => {
    formAddCat.classList.add("collapsed");
   });
 
-//Función nuevo gatito
+//Funciones para mostrar/oculta el menú de añadir gatito
   function showNewCatForm() {    
     formAddCat.classList.remove('collapsed');
   }
@@ -146,20 +139,18 @@ btnAdd.addEventListener('click', () => {
   function hideNewCatForm() {    
     formAddCat.classList.add('collapsed');
   }
-
+//función que irá con el evento de click y que tiene el "if"
   function handleClickNewCatForm(event) {
     event.preventDefault();
-    if (formAddCat.classList.contains("collapsed")) {
-     
-      showNewCatForm
+    if (formAddCat.classList.contains("collapsed")) {     
+      showNewCatForm ();
       
-    } else {}
+    } else {
+      hideNewCatForm();
+    }
       
   };
-//esto es lo nuestro
 
-/*const formAddCat = document.querySelector('.js-new-form');
-const btn = document.querySelector(".js-cross");*/
-
+//evento de escucha con eventhandler
 btn.addEventListener('click', handleClickNewCatForm);
 
