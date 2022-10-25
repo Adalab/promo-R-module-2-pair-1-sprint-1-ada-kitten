@@ -91,23 +91,26 @@ if( kittenDesc1.includes(descrSearchText) ) {
 
 const formAddCat = document.querySelector('.js-new-form');
 const btn = document.querySelector(".js-cross");
-
+/*
 btn.addEventListener('click', () => {
     if (formAddCat.classList.contains("collapsed"))
     {formAddCat.classList.remove("collapsed")
     }
     else {formAddCat.classList.add("collapsed")};
 });
-
+*/
 //validar la información del formulario
 const btnAdd = document.querySelector(".js-btn-add");
 //const de los input
 const inputDesc = document.querySelector('.js-input-desc');
 const inputPhoto = document.querySelector('.js-input-photo');
 const inputName = document.querySelector('.js-input-name');
-const valueDesc = inputDesc.value;
-const valuePhoto = inputPhoto.value;
-const valueName = inputName.value;
+const inputRace = document.querySelector ('.js-input-race');
+let valueDesc = inputDesc.value;
+let valuePhoto = inputPhoto.value;
+let valueName = inputName.value;
+let valueRace = inputRace.value;
+
 //mensaje de error
 const labelMesageError = document.querySelector('.js-label-error');
 
@@ -124,6 +127,39 @@ btnAdd.addEventListener('click', () => {
 
   //Escuchar el boton (falta limpiar el form)
 
-  btonCancel.addEventListener('click', () => {
-    formAddCat.classList.add("collapsed");
+  btonCancel.addEventListener('click', (event) => {
+    event.preventDefault();
+
+   inputDesc.value = "";
+   inputPhoto.value = "";
+   inputName.value = "";
+   inputRace.value = "";
+
+   formAddCat.classList.add("collapsed");
   });
+
+//Función nuevo gatito
+  function showNewCatForm() {    
+    formAddCat.classList.remove('collapsed');
+  }
+   
+  function hideNewCatForm() {    
+    formAddCat.classList.add('collapsed');
+  }
+
+  function handleClickNewCatForm(event) {
+    event.preventDefault();
+    if (formAddCat.classList.contains("collapsed")) {
+     
+      showNewCatForm
+      
+    } else {}
+      
+  };
+//esto es lo nuestro
+
+/*const formAddCat = document.querySelector('.js-new-form');
+const btn = document.querySelector(".js-cross");*/
+
+btn.addEventListener('click', handleClickNewCatForm);
+
