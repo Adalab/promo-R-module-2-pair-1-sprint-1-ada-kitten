@@ -22,9 +22,9 @@ const kittenName3 = 'Cielo'.toUpperCase();
 const kittenRace3 = 'British Shorthair';
 const kittenDesc3 = 'Risueño, cariñoso, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!';
 
-//validar la raza
+//validar la raza -->lo hacemos con el ternario dentro de la funcion del HTML
 
-let html = '';
+/*let html = '';
 
 if (kittenRace1 === "") {
     html = `No se ha especificado la raza`;
@@ -42,8 +42,19 @@ if (kittenRace2 === "") {
 
 const kittenTwo = `<li class="card"><img class="card_img"src=${kittenImage2} alt="gatito"/><h3 class="card_title">${kittenName2}</h3><h4 class="card_race">${html}</h4><p class="card_description"> ${kittenDesc2}</p></li>`;
 
-const kittenThree = `<li class="card"><img class="card_img"  src=${kittenImage3}  alt="gatito" /><h3 class="card_title">${kittenName3}</h3><h4 class="card_race">${kittenRace3 === "" ? "No se ha especificado la raza" : kittenRace3}</h4><p class="card_description">${kittenDesc3}</p></li>`;
 
+const kittenThree = `<li class="card"><img class="card_img"  src=${kittenImage3}  alt="gatito" /><h3 class="card_title">${kittenName3}</h3><h4 class="card_race">${kittenRace3 === "" ? "No se ha especificado la raza" : kittenRace3}</h4><p class="card_description">${kittenDesc3}</p></li>`;*/
+
+function renderKitten(url, desc, name, race) {
+  const htmlKitten = `<li class="card"><img class="card_img"src=${url} alt="gatito"/><h3 class="card_title">${name}</h3><h4 class="card_race">${race  === "" ? "No se ha especificado la raza" : race}</h4><p class="card_description"> ${desc}</p></li>`;
+  return htmlKitten
+}
+
+const kittenTwo = renderKitten(kittenImage2, kittenDesc2, kittenName2, kittenRace2);
+const kittenThree = renderKitten(kittenImage3, kittenDesc3, kittenName3, kittenRace3);
+const kittenOne = renderKitten(kittenImage1, kittenDesc1, kittenName1, kittenRace1);
+
+  
 // cambiamos el contenido de js-list (llamando a la constante)
 
 listKitten.innerHTML = kittenOne + kittenTwo + kittenThree;
@@ -108,28 +119,43 @@ let valueRace = inputRace.value;
 const labelMesageError = document.querySelector('.js-label-error');
 
 //evento de click en añadir
-btnAdd.addEventListener('click', () => {
-    if ( valueDesc === "" || valuePhoto=== "" || valueName==="" ) {
-        labelMesageError.innerHTML = 'Debe rellenar todos los valores.'
-    }
-  });
+
+
+  function addNewKitten (event){
+    event.preventDefault();
+    if ( inputDesc.value === "" || inputPhoto.value=== "" || inputName.value==="" ) {
+      labelMesageError.innerHTML = 'Debe rellenar todos los valores.'
+    } else {
+      labelMesageError.innerHtml ="hola Maricarmen" }; //no nos lee el else
+    const gatito = {
+        name:inputName.value, 
+        desc:inputDesc.value,
+        foto:inputPhoto.value,
+        race:inputRace.value        
+    }    
+  console.log(gatito);
+  return gatito
+}
+
+btnAdd.addEventListener('click', (addNewKitten) );
 
   //Cancelar formulario
 
   const btonCancel = document.querySelector( ".js-btn-cancel");
 
-  //Escuchar el boton (falta limpiar el form)
-
-  btonCancel.addEventListener('click', (event) => {
+  //Escuchar el boton 
+  const cancelNewKitten = (event) => {
     event.preventDefault();
 
-   inputDesc.value = "";
-   inputPhoto.value = "";
-   inputName.value = "";
-   inputRace.value = "";
+    inputDesc.value = "";
+    inputPhoto.value = "";
+    inputName.value = "";
+    inputRace.value = "";
+ 
+    formAddCat.classList.add("collapsed");   
+  };
 
-   formAddCat.classList.add("collapsed");
-  });
+  btonCancel.addEventListener('click', (cancelNewKitten) );
 
 //Funciones para mostrar/oculta el menú de añadir gatito
   function showNewCatForm() {    
@@ -143,12 +169,10 @@ btnAdd.addEventListener('click', () => {
   function handleClickNewCatForm(event) {
     event.preventDefault();
     if (formAddCat.classList.contains("collapsed")) {     
-      showNewCatForm ();
-      
+      showNewCatForm ();      
     } else {
       hideNewCatForm();
-    }
-      
+    }      
   };
 
 //evento de escucha con eventhandler
