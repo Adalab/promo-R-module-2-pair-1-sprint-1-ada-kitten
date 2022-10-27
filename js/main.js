@@ -14,7 +14,7 @@ const kittenDesc1 = 'Risueño, juguetón, le guta estar tranquilo y que nadie le
 const kittenImage2 ="https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg";
 const kittenName2 = 'Fiona'.toUpperCase();
 const kittenRace2 = 'British Shorthair';
-const kittenDesc2 = 'Risueño, juguetón, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!';
+const kittenDesc2 = 'Risueño, cariñoso, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!';
 
 
 const kittenImage3 ="https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg";
@@ -23,6 +23,10 @@ const kittenRace3 = 'British Shorthair';
 const kittenDesc3 = 'Risueño, cariñoso, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!';
 
 //validar la raza -->lo hacemos con el ternario dentro de la funcion del HTML
+
+
+/*!!!!! estamos en el ejercio 3 de la leccion funciones II, tenemos que crear la funcion que tenga el if de la raza y sustituir ese if por el de la funcion renderKitten
+
 
 /*let html = '';
 
@@ -57,46 +61,38 @@ const kittenOne = renderKitten(kittenImage1, kittenDesc1, kittenName1, kittenRac
   
 // cambiamos el contenido de js-list (llamando a la constante)
 
-listKitten.innerHTML = kittenOne + kittenTwo + kittenThree;
+//listKitten.innerHTML = kittenOne + kittenTwo + kittenThree;
 
-
-
-//validar formulario de búsqueda. Variables:
-const input_search_desc = document.querySelector('.js_in_search_desc');
-const input_search_race = document.querySelector('.js_in_search_race');
-const searchBtn = document.querySelector('.js-btn-search');
-const labelSearch = document.querySelector('.error_search');
-const ValueSearchDesc = input_search_desc.value;
-const ValueSearchRace = input_search_race.value;
-
-
-//evento de validar, boton de busqueda:
-searchBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-  if ( ValueSearchDesc === "" || ValueSearchRace=== "") {
-    labelSearch.innerHTML = 'Debe rellenar todos los valores.'
-  }
-});
 
 
 //búsqueda por descripción
-/*input_search_desc.value = '';
 
-const descrSearchText = input_search_desc.value;
+const searchBtn = document.querySelector('.js-btn-search');
 
-if( kittenDesc1.includes(descrSearchText) ) {
-    listKitten.innerHTML = kittenOne;
-    }
-    
-    if( kittenDesc2.includes(descrSearchText) ) {
-        listKitten.innerHTML = kittenTwo;
-    }
-    
-    if( kittenDesc3.includes(descrSearchText) ) {
-        listKitten.innerHTML = kittenThree;
-    }*/
+function filterKitten (event) {
+  event.preventDefault();
+  const input_search_desc = document.querySelector('.js_in_search_desc');
+  const input_search_race = document.querySelector('.js_in_search_race');  
+  const labelSearch = document.querySelector('.error_search');
+  const ValueSearchDesc = input_search_desc.value;
+  const ValueSearchRace = input_search_race.value;
+  const descrSearchText = input_search_desc.value;  
+  if ( ValueSearchDesc === "" || ValueSearchRace=== "") {
+  labelSearch.innerHTML = 'Debe rellenar todos los valores.'
+  }
+     if( kittenDesc1.includes(descrSearchText) ) {
+    listKitten.innerHTML += kittenOne;
+    }   
+     if( kittenDesc2.includes(descrSearchText) ) {
+        listKitten.innerHTML += kittenTwo;
+    }    
+     if( kittenDesc3.includes(descrSearchText) ) {
+        listKitten.innerHTML += kittenThree;
+    };
+    console.log(descrSearchText);
+  };
 
-
+  searchBtn.addEventListener('click', filterKitten);
 
 //Constantes para mostrar/ocultar el formulario
 
@@ -120,26 +116,25 @@ const labelMesageError = document.querySelector('.js-label-error');
 
 //evento de click en añadir
 
-
   function addNewKitten (event){
-    event.preventDefault();
+    event.preventDefault();    
     if ( inputDesc.value === "" || inputPhoto.value=== "" || inputName.value==="" ) {
       labelMesageError.innerHTML = 'Debe rellenar todos los valores.'
-    } else {
-      labelMesageError.innerHtml ="hola Maricarmen" }; //no nos lee el else
-    const gatito = {
+    } else {      
+      const gatito = {
         name:inputName.value, 
         desc:inputDesc.value,
         foto:inputPhoto.value,
-        race:inputRace.value        
-    }    
-  console.log(gatito);
+        race:inputRace.value              
+    }  
+    console.log(gatito);  
+  };     
   return gatito
 }
 
 btnAdd.addEventListener('click', (addNewKitten) );
 
-  //Cancelar formulario
+//Cancelar formulario
 
   const btonCancel = document.querySelector( ".js-btn-cancel");
 
