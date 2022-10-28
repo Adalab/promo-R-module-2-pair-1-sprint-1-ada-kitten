@@ -6,27 +6,44 @@
 const listKitten = document.querySelector('.js-list');
 //constante de cada gatito
 
-const kittenImage1 ="https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg";
+/*const kittenImage1 ="https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg";
 const kittenName1 = 'Anastacio'.toUpperCase();
 const kittenRace1 = '';
-const kittenDesc1 = 'Risueño, juguetón, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!';
+const kittenDesc1 = 'Risueño, juguetón, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!';*/
 
-const kittenImage2 ="https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg";
+const kittenData_1 = {
+  url:"https://ychef.files.bbci.co.uk/976x549/p07ryyyj.jpg",
+  name:'Anastacio'.toUpperCase(),
+  desc:'Risueño, juguetón, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!',
+  race:''
+};
+
+const kittenData_2 ={
+  url:"https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg",
+  name:'Fiona'.toUpperCase(),
+  desc:'Risueño, cariñoso, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!',
+  race:'British Shorthair'
+}
+
+/*const kittenImage2 ="https://images.emedicinehealth.com/images/article/main_image/cat-scratch-disease.jpg";
 const kittenName2 = 'Fiona'.toUpperCase();
 const kittenRace2 = 'British Shorthair';
-const kittenDesc2 = 'Risueño, cariñoso, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!';
+const kittenDesc2 = 'Risueño, cariñoso, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!';*/
 
-
-const kittenImage3 ="https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg";
+const kittenData_3 ={
+  url: "https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg",
+  name: 'Cielo'.toUpperCase(),
+  desc: 'Risueño, cariñoso, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!',
+  race:""
+}
+/*const kittenImage3 ="https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/newscms/2019_39/3021711/190923-cat-pet-stock-cs-1052a.jpg";
 const kittenName3 = 'Cielo'.toUpperCase();
-const kittenRace3 = 'British Shorthair';
-const kittenDesc3 = 'Risueño, cariñoso, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!';
+const kittenRace3 = '';
+const kittenDesc3 = 'Risueño, cariñoso, le guta estar tranquilo y que nadie le moleste.  Es una maravilla acariciarle!';*/
 
-//validar la raza -->lo hacemos con el ternario dentro de la funcion del HTML
+const kittenDataList = [kittenData_1, kittenData_2,kittenData_3]
 
-
-/*!!!!! estamos en el ejercio 3 de la leccion funciones II, tenemos que crear la funcion que tenga el if de la raza y sustituir ese if por el de la funcion renderKitten
-
+//validar la raza
 
 /*let html = '';
 
@@ -49,19 +66,37 @@ const kittenTwo = `<li class="card"><img class="card_img"src=${kittenImage2} alt
 
 const kittenThree = `<li class="card"><img class="card_img"  src=${kittenImage3}  alt="gatito" /><h3 class="card_title">${kittenName3}</h3><h4 class="card_race">${kittenRace3 === "" ? "No se ha especificado la raza" : kittenRace3}</h4><p class="card_description">${kittenDesc3}</p></li>`;*/
 
-function renderKitten(url, desc, name, race) {
-  const htmlKitten = `<li class="card"><img class="card_img"src=${url} alt="gatito"/><h3 class="card_title">${name}</h3><h4 class="card_race">${race  === "" ? "No se ha especificado la raza" : race}</h4><p class="card_description"> ${desc}</p></li>`;
+function renderRace (race){  
+  if (race === "") {
+    race =`<p class="card_race">No se ha especificado la raza</p>`
+  } else {
+   race= `<h4 class="card_race">${race}</h4>`
+  } 
+  console.log(typeof(race));
+  return race;
+}
+
+
+/*function renderKitten(url, desc, name, race) {
+  race = renderRace(race); 
+  const htmlKitten = `<li class="card"><img class="card_img"src=${url} alt="gatito"/><h3 class="card_title">${name}</h3>${race}<p class="card_description"> ${desc}</p></li>`;
+  return htmlKitten
+}*/
+function renderKitten(kittenData) {
+  kittenData.race = renderRace(kittenData.race);
+  const htmlKitten = `<li class="card"><img class="card_img"src=${kittenData.url} alt="gatito"/><h3 class="card_title">${kittenData.name}</h3>${kittenData.race}<p class="card_description"> ${kittenData.desc}</p></li>`;
   return htmlKitten
 }
 
-const kittenTwo = renderKitten(kittenImage2, kittenDesc2, kittenName2, kittenRace2);
-const kittenThree = renderKitten(kittenImage3, kittenDesc3, kittenName3, kittenRace3);
-const kittenOne = renderKitten(kittenImage1, kittenDesc1, kittenName1, kittenRace1);
+const kittenOne = renderKitten(kittenData_1);
+const kittenTwo = renderKitten(kittenData_2);
+const kittenThree = renderKitten(kittenData_3);
+
 
   
 // cambiamos el contenido de js-list (llamando a la constante)
 
-//listKitten.innerHTML = kittenOne + kittenTwo + kittenThree;
+listKitten.innerHTML = kittenOne + kittenTwo + kittenThree;
 
 
 
